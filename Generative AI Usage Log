@@ -1,14 +1,14 @@
 Generative AI Usage Log
 
-Generative AI tools were used as assistants in this assignment. All final decisions on experimental design, code execution, and interpretation of results were made by the author.
+Generative AI tools were used as assistants in this assignment. All final decisions on experimental design, code execution, and interpretation of results were made by myself.
 
 Tools used
-Perplexity: initial Google Colab environment setup
-Claude:code debugging (majority), diagnostic logging, English language polishing
+- Perplexity: initial Google Colab environment setup
+- Claude:code debugging (majority), diagnostic logging, English language polishing
 
 Main purposes
 - Organising the initial installation order, MANO file placement, and execution commands for reproducing the official HaMeR implementation on Google Colab
-- Debugging path errors and verifying output files during execution
+- Debugging code errors and verifying output files during execution
 - Interpreting the pipeline structure of the official demo.py and assisting with the diagnostic logging code
 - Refining the wording and sentence structure of the author's English draft for academic register
 
