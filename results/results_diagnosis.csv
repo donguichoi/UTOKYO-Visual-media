@@ -1,0 +1,8 @@
+image,persons,L_kp,R_kp,L_mean,R_mean,L_max,R_max,IoU,to_hamer,diagnosis
+fist_closeup_1.jpg,1,3,0,0.529,0.0,0.578,0.485,,0,STAGE-2 failed: insufficient hand keypoint confidence
+fist_closeup_2.jpg,1,0,0,0.0,0.0,0.46,0.39,,0,STAGE-2 failed: insufficient hand keypoint confidence
+palm_closeup_1.jpg,1,7,5,0.556,0.561,0.59,0.616,0.696,2,DUPLICATE: both L/R candidates passed
+normal_hand_2.jpg,1,21,20,0.796,0.641,0.975,0.795,0.889,2,DUPLICATE: both L/R candidates passed
+normal_hand_1.jpg,1,21,11,0.703,0.61,0.952,0.848,0.795,2,DUPLICATE: both L/R candidates passed
+two_hands_overlap.jpg,1,2,0,0.563,0.0,0.587,0.496,,0,STAGE-2 failed: insufficient hand keypoint confidence
+ambiguous_hand_1.jpg,1,2,2,0.603,0.563,0.643,0.59,,0,STAGE-2 failed: insufficient hand keypoint confidence

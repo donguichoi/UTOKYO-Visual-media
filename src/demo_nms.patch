@@ -1,0 +1,66 @@
+--- demo.py	2026-07-29 12:26:02.032190512 +0000
++++ demo_nms.py	2026-07-29 12:46:58.459391768 +0000
+@@ -1,5 +1,7 @@
+ from pathlib import Path
+ import torch
++IOU_THRESH = 0.5
++
+ import argparse
+ import os
+ import cv2
+@@ -100,19 +102,42 @@
+             left_hand_keyp = vitposes['keypoints'][-42:-21]
+             right_hand_keyp = vitposes['keypoints'][-21:]
+ 
+-            # Rejecting not confident detections
+-            keyp = left_hand_keyp
+-            valid = keyp[:,2] > 0.5
+-            if sum(valid) > 3:
+-                bbox = [keyp[valid,0].min(), keyp[valid,1].min(), keyp[valid,0].max(), keyp[valid,1].max()]
+-                bboxes.append(bbox)
+-                is_right.append(0)
+-            keyp = right_hand_keyp
+-            valid = keyp[:,2] > 0.5
+-            if sum(valid) > 3:
+-                bbox = [keyp[valid,0].min(), keyp[valid,1].min(), keyp[valid,0].max(), keyp[valid,1].max()]
+-                bboxes.append(bbox)
+-                is_right.append(1)
++            # [MOD] Collect candidates instead of committing them immediately
++            candidates = []
++            for side_flag, keyp in ((0, left_hand_keyp), (1, right_hand_keyp)):
++                valid = keyp[:,2] > 0.5
++                if sum(valid) > 3:
++                    bbox = [keyp[valid,0].min(), keyp[valid,1].min(),
++                            keyp[valid,0].max(), keyp[valid,1].max()]
++                    candidates.append({'bbox': bbox,
++                                       'is_right': side_flag,
++                                       'n_valid': int(sum(valid)),
++                                       'conf': float(keyp[valid,2].mean())})
++
++            # [MOD] Remove duplication based on IoU (greedy NMS)
++            def _iou(b1, b2):
++                iw = max(0, min(b1[2], b2[2]) - max(b1[0], b2[0]))
++                ih = max(0, min(b1[3], b2[3]) - max(b1[1], b2[1]))
++                inter = iw * ih
++                union = ((b1[2]-b1[0])*(b1[3]-b1[1])
++                         + (b2[2]-b2[0])*(b2[3]-b2[1]) - inter)
++                return inter / union if union > 0 else 0.0
++
++            filtered = []
++            for c in sorted(candidates, key=lambda c: c['conf'], reverse=True):
++                if all(_iou(c['bbox'], k['bbox']) < IOU_THRESH for k in filtered):
++                    filtered.append(c)
++
++            if len(candidates) > len(filtered):
++                print(f'[NMS] {os.path.basename(str(img_path))} [v1-conf]: '
++                      f'{len(candidates)} -> {len(filtered)} | '
++                      f'kept is_right={[c["is_right"] for c in filtered]} | '
++                      f'cand=' + str([(c['is_right'], c['n_valid'], round(c['conf'], 3))
++                                      for c in candidates]))
++
++            for c in filtered:
++                bboxes.append(c['bbox'])
++                is_right.append(c['is_right'])
+ 
+         if len(bboxes) == 0:
+             continue

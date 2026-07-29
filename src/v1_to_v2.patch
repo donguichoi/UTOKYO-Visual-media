@@ -1,0 +1,17 @@
+--- demo_nms.py	2026-07-29 12:46:58.459391768 +0000
++++ demo_nms_v2.py	2026-07-29 12:46:58.459391768 +0000
+@@ -124,12 +124,12 @@
+                 return inter / union if union > 0 else 0.0
+ 
+             filtered = []
+-            for c in sorted(candidates, key=lambda c: c['conf'], reverse=True):
++            for c in sorted(candidates, key=lambda c: (c['n_valid'], c['conf']), reverse=True):
+                 if all(_iou(c['bbox'], k['bbox']) < IOU_THRESH for k in filtered):
+                     filtered.append(c)
+ 
+             if len(candidates) > len(filtered):
+-                print(f'[NMS] {os.path.basename(str(img_path))} [v1-conf]: '
++                print(f'[NMS] {os.path.basename(str(img_path))} [v2-count]: '
+                       f'{len(candidates)} -> {len(filtered)} | '
+                       f'kept is_right={[c["is_right"] for c in filtered]} | '
+                       f'cand=' + str([(c['is_right'], c['n_valid'], round(c['conf'], 3))

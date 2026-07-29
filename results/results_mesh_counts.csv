@@ -1,0 +1,8 @@
+image,baseline,nms_v1,nms_v2,side_v1,side_v2
+ambiguous_hand_1,0,0,0,-,-
+fist_closeup_1,0,0,0,-,-
+fist_closeup_2,0,0,0,-,-
+normal_hand_1,2,1,1,L,L
+normal_hand_2,2,1,1,L,L
+palm_closeup_1,2,1,1,R,L
+two_hands_overlap,0,0,0,-,-
