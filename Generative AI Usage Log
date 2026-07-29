@@ -16,4 +16,4 @@ Parts revised or judged by the author
 - I found that one suggested patch was placed after an early-exit branch, where it would never execute in exactly the failure cases it was meant to handle, and relocated it after tracing the control flow. 
 - From the diagnostic log, I observed that the two candidates in palm_closeup_1 were separated by only 0.005 in mean keypoint confidence and independently derived Improvement 2.
 - All experimental results were obtained by running the code directly. The full experiment was repeated three or more times to confirm reproducibility.
-- The failure analysis, the interpretation of the improvement, and all conclusions were written by yself.
+- The failure analysis, the interpretation of the improvement, and all conclusions were written by myself.
