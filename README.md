@@ -89,7 +89,7 @@ The IoU threshold of 0.5 is based on the measured range above (0.696–0.889).
 | path | description |
 |---|---|
 | `notebooks/` | Full Colab notebook with execution outputs |
-| `src/demo_debug.py` | Stage-by-stage logging. Behaviour identical to baseline. |
+| `src/demo_debug.py` | Stage-by-stage logging. Behavior identical to baseline. |
 | `src/demo_nms.py` | Improvement 1: candidate-level IoU NMS |
 | `src/demo_nms_v2.py` | Improvement 2: ranking by valid keypoint count |
 | `src/*.patch` | Unified diffs against the official `demo.py` |
@@ -106,5 +106,5 @@ checkpoint and MANO model files, then run each script with
 `--side_view --save_mesh --full_frame`.
 
 MANO model files and the pretrained checkpoint are **not included** in this
-repository due to their licence terms. Obtain them from the official HaMeR
+repository due to their license terms. Obtain them from the official HaMeR
 `fetch_demo_data.sh` script and the MANO distribution site.
