@@ -5,12 +5,17 @@ Generative AI tools were used as assistants in this assignment. All final decisi
 Tools used
 
 • Perplexity: initial Google Colab environment setup
+
 • Claude: code debugging (majority), diagnostic logging, English language grammar polishing
 
 Main purposes
+
 • Organising the initial installation order, MANO file placement, and execution commands for reproducing the official HaMeR implementation on Google Colab
+
 • Debugging code errors and verifying output files during execution
+
 • Interpreting the pipeline structure of the official demo.py and assisting with the diagnostic logging code
+
 • Refining the wording and sentence structure of the author's English draft for academic register.
 
 Parts revised or judged by the author
